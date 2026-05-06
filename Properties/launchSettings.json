@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WinMensa (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "WinMensa (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

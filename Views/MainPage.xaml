@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Page
+    x:Class="WinMensa.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:WinMensa"
+    xmlns:core="using:WinMensa.Core"
+    xmlns:view="using:WinMensa.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+>
+    <Page.Resources>
+        <DataTemplate x:Key="MealTemplate" x:DataType="core:Meal">
+            <TextBlock Text="{x:Bind Name}" Margin="8,2,0,2" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="LineTemplate" x:DataType="core:Line">
+            <StackPanel Margin="0,8,0,0">
+                <TextBlock
+                    Text="{x:Bind Name}"
+                    FontWeight="SemiBold"
+                    Margin="0,0,0,4"
+                />
+                <ItemsControl
+                    ItemsSource="{x:Bind Meals}"
+                    ItemTemplate="{StaticResource MealTemplate}"
+                />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate
+            x:Key="MealDetailsTemplate"
+            x:DataType="view:MealContainer"
+        >
+            <Expander
+                ExpandDirection="Down"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Stretch"
+                Margin="0,0,0,8"
+                IsExpanded="False"
+            >
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="{x:Bind Meal.Name}" />
+                        <TextBlock
+                            Text="{x:Bind FormattedPrice}"
+                            FontWeight="Bold"
+                        />
+                    </StackPanel>
+                </Expander.Header>
+                <FlipView
+                    Height="250"
+                    ItemsSource="{x:Bind Meal.Images}"
+                    ItemTemplate="{StaticResource MealImageTemplate}"
+                />
+            </Expander>
+        </DataTemplate>
+        <DataTemplate x:Key="MealImageTemplate" x:DataType="core:MealImage">
+            <Image
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Stretch="Uniform"
+                Margin="0,4,0,4"
+                Tag="{x:Bind Url}"
+                Tapped="OnMealImageTapped"
+            >
+                <Image.Source>
+                    <BitmapImage UriSource="{x:Bind ImageUri}" />
+                </Image.Source>
+            </Image>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Page.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ListView
+                x:Name="LinesList"
+                ItemTemplate="{StaticResource LineTemplate}"
+                SelectionMode="Single"
+                Grid.Row="0"
+                Grid.Column="0"
+                Padding="16"
+                IsItemClickEnabled="True"
+            />
+            <Grid
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="16,0,16,0"
+                x:Name="MealDetailsPanel"
+            >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Grid.Row="0"
+                    Text="Wähle eine Linie aus, um die Details zu sehen"
+                    x:Name="MealDetailsPlaceholderText"
+                />
+                <ScrollViewer Grid.Row="1" x:Name="MealDetailsScrollViewer">
+                    <ItemsControl
+                        x:Name="MealDetailsList"
+                        ItemTemplate="{StaticResource MealDetailsTemplate}"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"
+                        Margin="0,8,0,0"
+                    />
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+    </Page.Content>
+</Page>

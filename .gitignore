@@ -1,0 +1,39 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docobj
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Windows App SDK / MSIX packaging
+AppPackages/
+BundleArtifacts/
+_pkginfo.txt
+*.appx
+*.appxbundle
+*.appxupload
+*.msix
+*.msixbundle
+*.msixupload
+
+# Publish profiles (auto-generated)
+Properties/PublishProfiles/
+
+# Rider
+.idea/
+
+# OS
+Thumbs.db
+Desktop.ini
