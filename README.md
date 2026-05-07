@@ -17,6 +17,7 @@ Features hopefully coming soon:
 - [ ] Choosing the canteen - currently hardcoded to Mensa Moltke @ Hochschule Karlsruhe
 - [ ] Viewing the star rating of the meals
 - [ ] Viewing nutritional information as well as some other metadata such as the type of the meal
+- [ ] Customisable sorting options for the lanes / meals
 
 ## Licence
 
