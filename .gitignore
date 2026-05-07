@@ -27,9 +27,9 @@ _pkginfo.txt
 *.msix
 *.msixbundle
 *.msixupload
-
-# Publish profiles (auto-generated)
-Properties/PublishProfiles/
+Installer/Redist/*
+!Installer/Redist/.gitkeep
+Installer/Output*
 
 # Rider
 .idea/
