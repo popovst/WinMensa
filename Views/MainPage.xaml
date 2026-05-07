@@ -61,7 +61,7 @@
                 VerticalAlignment="Stretch"
                 Stretch="Uniform"
                 Margin="0,4,0,4"
-                Tag="{x:Bind Url}"
+                Tag="{x:Bind}"
                 Tapped="OnMealImageTapped"
             >
                 <Image.Source>
@@ -114,6 +114,72 @@
                         Margin="0,8,0,0"
                     />
                 </ScrollViewer>
+            </Grid>
+
+            <Grid
+                x:Name="LightboxOverlay"
+                Grid.ColumnSpan="2"
+                Background="#DC000000"
+                Visibility="Collapsed"
+                Opacity="0"
+                Tapped="OnLightboxBackdropTapped"
+            >
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    Tapped="OnLightboxContentTapped"
+                >
+                    <Image
+                        x:Name="LightboxImage"
+                        MaxHeight="700"
+                        MaxWidth="900"
+                        Stretch="Uniform"
+                    />
+                    <TextBlock
+                        x:Name="LightboxCounter"
+                        HorizontalAlignment="Center"
+                        Foreground="White"
+                        Margin="0,8,0,0"
+                        FontSize="13"
+                    />
+                </StackPanel>
+
+                <Button
+                    x:Name="LightboxPrevButton"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="16,0"
+                    FontSize="24"
+                    FontFamily="{StaticResource SymbolThemeFontFamily}"
+                    Content="&#xe76b;"
+                    Click="OnLightboxPrev"
+                    Tapped="OnLightboxContentTapped"
+                />
+
+                <Button
+                    x:Name="LightboxNextButton"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="16,0"
+                    FontSize="24"
+                    FontFamily="{StaticResource SymbolThemeFontFamily}"
+                    Content="&#xe76c;"
+                    Click="OnLightboxNext"
+                    Tapped="OnLightboxContentTapped"
+                />
+
+                <Button
+                    x:Name="LightboxCloseButton"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Margin="16"
+                    FontSize="16"
+                    FontFamily="{StaticResource SymbolThemeFontFamily}"
+                    Content="&#xe711;"
+                    Click="OnLightboxClose"
+                    Tapped="OnLightboxContentTapped"
+                />
             </Grid>
         </Grid>
     </Page.Content>
