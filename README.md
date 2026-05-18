@@ -28,4 +28,5 @@ For the licencing of the data provided by the Mensa-KA API please see [the corre
 
 ## Contributions
 
-Pull requests for features listed earlier - and any other ones - are very welcome!
+Pull requests for features listed earlier - and any other ones - are very welcome!  
+Please state if you have used AI tools in your contribution and try to only contribute code you understand and have tested yourself.
