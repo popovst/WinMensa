@@ -74,8 +74,8 @@ public record Meal(
     NutritionData? NutritionData,
     EnvironmentInfo? EnvironmentInfo,
     Statistics Statistics,
-    Ratings Ratings,
-    MealImage[] Images,
+    Ratings? Ratings,
+    MealImage[]? Images,
     Side[] Sides);
 
 public record Canteen(string Id, string Name);
@@ -117,6 +117,10 @@ public class Query
                 }
                 allergens
                 additives
+                ratings {
+                    averageRating
+                    ratingsCount
+                }
                 images {
                     url
                     id

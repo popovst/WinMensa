@@ -4,7 +4,27 @@ using WinMensa.Core;
 
 namespace WinMensa.Views
 {
-    public record MealContainer(Meal Meal, bool Expanded, string FormattedPrice);
+    public record MealContainer(Meal Meal, bool Expanded, string FormattedPrice)
+    {
+        private bool HasRatings => Meal.Ratings is { } r && r.RatingsCount > 0;
+
+        public string FormattedRatingCaption => Meal.Ratings is { } r
+            ? (HasRatings ? $"{r.AverageRating:F1} - von {r.RatingsCount} Bewertungen" : "Keine Bewertungen")
+            : string.Empty;
+
+        public string HeaderFormattedRating => Meal.Ratings is { } r
+            ? (HasRatings ? $"★ {r.AverageRating:F1}" : "☆ Neu")
+            : string.Empty;
+
+        public int AverageRating => Meal.Ratings is { } r
+            ? (HasRatings ? (int)Math.Round(r.AverageRating) : -1)
+            : 0;
+
+        public string MealTag => $"[{Meal.MealType}]";
+
+        public Visibility ImageControlVisibility =>
+            Meal.Images is { Length: > 0 } ? Visibility.Visible : Visibility.Collapsed;
+    }
 
     public partial class MainPage : Page
     {
