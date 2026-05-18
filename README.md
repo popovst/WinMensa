@@ -11,12 +11,13 @@ In heavy development - features include:
 - [X] Viewing the available meals in their respective lines
 - [X] Viewing the prices of the meals
 - [X] Viewing user-provided images of the meals
+- [X] Viewing the star rating of the meals
+- [X] Viewing the type of the meal (vegan, vegetarian, pork, etc.)
   
 Features hopefully coming soon:
 
 - [ ] Choosing the canteen - currently hardcoded to Mensa Moltke @ Hochschule Karlsruhe
-- [ ] Viewing the star rating of the meals
-- [ ] Viewing nutritional information as well as some other metadata such as the type of the meal
+- [ ] Viewing nutritional information and other meal metadata
 - [ ] Customisable sorting options for the lanes / meals
 
 ## Licence
