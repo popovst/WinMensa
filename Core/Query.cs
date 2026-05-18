@@ -142,27 +142,34 @@ public class Query
     }
 }";
 
+    const string GQL_CANTEENS_QUERY = @"query {
+    getCanteens {
+        id
+        name
+    }
+}";
+
     private static readonly GraphQLHttpClient gqlClient = new(
         "https://api.mensa-ka.de/",
         new NewtonsoftJsonSerializer(),
         new HttpClient { Timeout = TimeSpan.FromSeconds(10) });
 
-    public static String MOLTKE_ID = "8d1af6fc-547e-4078-a7f7-47948304e9fd";
-
-    public static async Task<GetCanteenDateData?> GetCanteenData()
+    public static async Task<GetCanteenDateData?> GetCanteenData(string canteenId)
     {
         var menuRequest = new GraphQLRequest
         {
             Query = GQL_QUERY,
             OperationName = "Canteen",
-            Variables = new
-            {
-                canteenId = MOLTKE_ID,
-                date = DateTime.Now.ToString("yyyy-MM-dd")
-            }
+            Variables = new { canteenId, date = DateTime.Now.ToString("yyyy-MM-dd") }
         };
         var response = await gqlClient.SendQueryAsync<GetCanteenDateResponse>(menuRequest);
-
         return response.Data?.GetCanteen;
+    }
+
+    public static async Task<Canteen[]> GetCanteens()
+    {
+        var request = new GraphQLRequest { Query = GQL_CANTEENS_QUERY };
+        var response = await gqlClient.SendQueryAsync<GetDefaultCanteenResponse>(request);
+        return response.Data?.GetCanteens ?? [];
     }
 }

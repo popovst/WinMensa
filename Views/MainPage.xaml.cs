@@ -28,6 +28,22 @@ namespace WinMensa.Views
 
     public partial class MainPage : Page
     {
+        private const string CanteenSettingsKey = "SelectedCanteenId";
+        private bool _canteenSelectorReady = false;
+        private static readonly string SettingsDir =
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "WinMensa");
+
+        private static string? ReadSetting(string key)
+        {
+            var path = Path.Combine(SettingsDir, key);
+            return File.Exists(path) ? File.ReadAllText(path) : null;
+        }
+
+        private static void WriteSetting(string key, string value)
+        {
+            Directory.CreateDirectory(SettingsDir);
+            File.WriteAllText(Path.Combine(SettingsDir, key), value);
+        }
         private List<MealImage> _lightboxImages = [];
         private int _lightboxIndex;
 
@@ -136,14 +152,79 @@ namespace WinMensa.Views
         {
             try
             {
-                var data = await Query.GetCanteenData();
-                var lines = data?.Lines?.Where(l => l.Meals.Length > 0).ToArray() ?? [];
-                LinesList.ItemsSource = lines ?? [];
+                var canteens = await Query.GetCanteens();
+                if (canteens.Length == 0) return;
+
+                _canteenSelectorReady = false;
+                CanteenSelector.ItemsSource = canteens;
+
+                var savedId = ReadSetting(CanteenSettingsKey);
+                var toSelect = canteens.FirstOrDefault(c => c.Id == savedId) ?? canteens[0];
+                CanteenSelector.SelectedItem = toSelect;
+                _canteenSelectorReady = true;
+
+                await LoadLinesAsync(toSelect.Id);
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Error loading data: {ex}");
+                Debug.WriteLine($"Error loading canteens: {ex}");
             }
+        }
+
+        private async Task LoadLinesAsync(string canteenId)
+        {
+            try
+            {
+                MealDetailsList.ItemsSource = null;
+                MealDetailsPlaceholderText.Visibility = Visibility.Visible;
+
+                var data = await Query.GetCanteenData(canteenId);
+                var lines = data?.Lines?.Where(l => l.Meals.Length > 0).ToArray() ?? [];
+                LinesList.ItemsSource = lines;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error loading canteen data: {ex}");
+            }
+        }
+
+        private async void OnAboutClicked(object sender, RoutedEventArgs e)
+        {
+            var content = new StackPanel { Spacing = 12, MaxWidth = 380 };
+            content.Children.Add(new TextBlock
+            {
+                Text = "Menu data is provided by Studierendenwerk Karlsruhe via the MensaApp API:",
+                TextWrapping = TextWrapping.Wrap,
+            });
+            content.Children.Add(new HyperlinkButton
+            {
+                Content = "github.com/kronos-et-al/MensaApp",
+                NavigateUri = new Uri("https://github.com/kronos-et-al/MensaApp"),
+                Padding = new Thickness(0),
+            });
+            content.Children.Add(new TextBlock
+            {
+                Text = "This project is neither affiliated with nor endorsed by the Studierendenwerk Karlsruhe.",
+                TextWrapping = TextWrapping.Wrap,
+                Opacity = 0.7,
+            });
+
+            await new ContentDialog
+            {
+                Title = "About WinMensa",
+                Content = content,
+                CloseButtonText = "Close",
+                XamlRoot = XamlRoot,
+            }.ShowAsync();
+        }
+
+        private async void OnCanteenSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!_canteenSelectorReady) return;
+            if (CanteenSelector.SelectedItem is not Canteen selected) return;
+
+            WriteSetting(CanteenSettingsKey, selected.Id);
+            await LoadLinesAsync(selected.Id);
         }
     }
 }

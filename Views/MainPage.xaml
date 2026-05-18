@@ -13,7 +13,7 @@
 >
     <Page.Resources>
         <DataTemplate x:Key="MealTemplate" x:DataType="core:Meal">
-            <TextBlock Text="{x:Bind Name}" Margin="8,2,0,2" />
+            <TextBlock Text="{x:Bind Name}" Margin="8,2,0,2" TextWrapping="Wrap" />
         </DataTemplate>
 
         <DataTemplate x:Key="LineTemplate" x:DataType="core:Line">
@@ -22,6 +22,7 @@
                     Text="{x:Bind Name}"
                     FontWeight="SemiBold"
                     Margin="0,0,0,4"
+                    TextWrapping="Wrap"
                 />
                 <ItemsControl
                     ItemsSource="{x:Bind Meals}"
@@ -169,19 +170,41 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="360" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <ListView
-                x:Name="LinesList"
-                ItemTemplate="{StaticResource LineTemplate}"
-                SelectionMode="Single"
-                Grid.Row="0"
-                Grid.Column="0"
-                Padding="16"
-                IsItemClickEnabled="True"
-            />
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <ComboBox
+                    x:Name="CanteenSelector"
+                    Grid.Row="0"
+                    Margin="16,12,16,4"
+                    HorizontalAlignment="Stretch"
+                    DisplayMemberPath="Name"
+                    PlaceholderText="Mensa wählen..."
+                    SelectionChanged="OnCanteenSelectionChanged"
+                />
+                <ListView
+                    x:Name="LinesList"
+                    Grid.Row="1"
+                    ItemTemplate="{StaticResource LineTemplate}"
+                    SelectionMode="Single"
+                    Padding="16"
+                    IsItemClickEnabled="True"
+                />
+                <HyperlinkButton
+                    Grid.Row="2"
+                    Content="About"
+                    HorizontalAlignment="Left"
+                    Margin="12,4,12,12"
+                    Click="OnAboutClicked"
+                />
+            </Grid>
             <Grid
                 Grid.Row="0"
                 Grid.Column="1"
