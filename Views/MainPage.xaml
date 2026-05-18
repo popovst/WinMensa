@@ -7,6 +7,7 @@
     xmlns:local="using:WinMensa"
     xmlns:core="using:WinMensa.Core"
     xmlns:view="using:WinMensa.Views"
+    xmlns:controls="using:CommunityToolkit.WinUI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
 >
@@ -41,18 +42,109 @@
             >
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal" Spacing="8">
+                        <controls:SwitchPresenter
+                            Value="{x:Bind Meal.MealType}"
+                        >
+                            <controls:Case Value="VEGAN">
+                                <Border
+                                    Background="{StaticResource SignifierVeganBackBrush}"
+                                    CornerRadius="4"
+                                    Padding="4,0"
+                                >
+                                    <TextBlock
+                                        Text="🌿 Vegan"
+                                        Foreground="{StaticResource SignifierVeganForeBrush}"
+                                    />
+                                </Border>
+                            </controls:Case>
+                            <controls:Case Value="VEGETARIAN">
+                                <Border
+                                    Background="{StaticResource SignifierVegetarianBackBrush}"
+                                    CornerRadius="4"
+                                    Padding="4,0"
+                                >
+                                    <TextBlock
+                                        Text="🌿 Vegetarisch"
+                                        Foreground="{StaticResource SignifierVegetarianForeBrush}"
+                                    />
+                                </Border>
+                            </controls:Case>
+                            <controls:Case Value="PORK">
+                                <Border
+                                    Background="{StaticResource SignifierPorkBackBrush}"
+                                    CornerRadius="4"
+                                    Padding="4,0"
+                                >
+                                    <TextBlock
+                                        Text="🐖 Schwein"
+                                        Foreground="{StaticResource SignifierPorkForeBrush}"
+                                    />
+                                </Border>
+                            </controls:Case>
+                            <controls:Case Value="POULTRY">
+                                <Border
+                                    Background="{StaticResource SignifierOtherMeatBackBrush}"
+                                    CornerRadius="4"
+                                    Padding="4,0"
+                                >
+                                    <TextBlock
+                                        Text="🐓 Geflügel"
+                                        Foreground="{StaticResource SignifierOtherMeatForeBrush}"
+                                    />
+                                </Border>
+                            </controls:Case>
+                            <controls:Case Value="BEEF">
+                                <Border
+                                    Background="{StaticResource SignifierOtherMeatBackBrush}"
+                                    CornerRadius="4"
+                                    Padding="4,0"
+                                >
+                                    <TextBlock
+                                        Text="🐄 Rind"
+                                        Foreground="{StaticResource SignifierOtherMeatForeBrush}"
+                                    />
+                                </Border>
+                            </controls:Case>
+                            <controls:Case IsDefault="True">
+                                <Border
+                                    Background="{StaticResource PrimaryBrush}"
+                                    CornerRadius="4"
+                                    Padding="4,0"
+                                >
+                                    <TextBlock
+                                        Text="{x:Bind Meal.MealType}"
+                                        Foreground="{StaticResource WhiteBrush}"
+                                    />
+                                </Border>
+                            </controls:Case>
+                        </controls:SwitchPresenter>
                         <TextBlock Text="{x:Bind Meal.Name}" />
                         <TextBlock
                             Text="{x:Bind FormattedPrice}"
                             FontWeight="Bold"
                         />
+                        <TextBlock Text="{x:Bind HeaderFormattedRating}" />
                     </StackPanel>
                 </Expander.Header>
-                <FlipView
-                    Height="250"
-                    ItemsSource="{x:Bind Meal.Images}"
-                    ItemTemplate="{StaticResource MealImageTemplate}"
-                />
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
+					<RatingControl
+                        Grid.Row="0"
+                        IsReadOnly="True"
+                        Caption="{x:Bind FormattedRatingCaption}"
+                        Value="{x:Bind AverageRating}"
+                    />
+                    <FlipView
+                        Grid.Row="1"
+                        Height="250"
+                        ItemsSource="{x:Bind Meal.Images}"
+                        ItemTemplate="{StaticResource MealImageTemplate}"
+                        Visibility="{x:Bind ImageControlVisibility}"
+                    />
+				</Grid>
             </Expander>
         </DataTemplate>
         <DataTemplate x:Key="MealImageTemplate" x:DataType="core:MealImage">

@@ -18,6 +18,14 @@
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
             <Color x:Key="Primary">#512BD4</Color>
+            <Color x:Key="SignifierVeganBack">#0e6808</Color>
+            <Color x:Key="SignifierVeganFore">#ffffff</Color>
+            <Color x:Key="SignifierPorkBack">#c42363</Color>
+            <Color x:Key="SignifierPorkFore">#ffffff</Color>
+            <Color x:Key="SignifierOtherMeatBack">#6b2715</Color>
+            <Color x:Key="SignifierOtherMeatFore">#ffffff</Color>
+            <Color x:Key="SignifierVegetarianBack">#f6ff0a</Color>
+            <Color x:Key="SignifierVegetarianFore">#0a490b</Color>
 
             <SolidColorBrush
                 x:Key="PrimaryBrush"
@@ -26,6 +34,38 @@
             <SolidColorBrush x:Key="WhiteBrush" Color="White" />
             <SolidColorBrush x:Key="BlackBrush" Color="Black" />
 
+            <SolidColorBrush
+                x:Key="SignifierVeganBackBrush"
+                Color="{StaticResource SignifierVeganBack}"
+            />
+            <SolidColorBrush
+                x:Key="SignifierVeganForeBrush"
+                Color="{StaticResource SignifierVeganFore}"
+            />
+            <SolidColorBrush
+                x:Key="SignifierPorkBackBrush"
+                Color="{StaticResource SignifierPorkBack}"
+            />
+            <SolidColorBrush
+                x:Key="SignifierPorkForeBrush"
+                Color="{StaticResource SignifierPorkFore}"
+            />
+            <SolidColorBrush
+                x:Key="SignifierOtherMeatBackBrush"
+                Color="{StaticResource SignifierOtherMeatBack}"
+            />
+            <SolidColorBrush
+                x:Key="SignifierOtherMeatForeBrush"
+                Color="{StaticResource SignifierOtherMeatFore}"
+            />
+            <SolidColorBrush
+                x:Key="SignifierVegetarianBackBrush"
+                Color="{StaticResource SignifierVegetarianBack}"
+            />
+            <SolidColorBrush
+                x:Key="SignifierVegetarianForeBrush"
+                Color="{StaticResource SignifierVegetarianFore}"
+            />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
