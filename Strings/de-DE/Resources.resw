@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+
+  <!-- Hauptseite -->
+  <data name="CanteenSelector.PlaceholderText" xml:space="preserve">
+    <value>Mensa wählen …</value>
+  </data>
+  <data name="MealDetailsPlaceholderText.Text" xml:space="preserve">
+    <value>Wähle eine Linie aus, um die Details zu sehen</value>
+  </data>
+  <data name="AboutButton.Content" xml:space="preserve">
+    <value>Über</value>
+  </data>
+
+  <!-- Essenskategorien -->
+  <data name="MealTypeVeganText.Text" xml:space="preserve">
+    <value>🌿 Vegan</value>
+  </data>
+  <data name="MealTypeVegetarianText.Text" xml:space="preserve">
+    <value>🌿 Vegetarisch</value>
+  </data>
+  <data name="MealTypePorkText.Text" xml:space="preserve">
+    <value>🐖 Schwein</value>
+  </data>
+  <data name="MealTypePoultryText.Text" xml:space="preserve">
+    <value>🐓 Geflügel</value>
+  </data>
+  <data name="MealTypeBeefText.Text" xml:space="preserve">
+    <value>🐄 Rind</value>
+  </data>
+
+  <!-- Bewertungen (Formatstrings: {0} = Durchschnitt, {1} = Anzahl) -->
+  <data name="RatingCaption" xml:space="preserve">
+    <value>{0:F1} – {1} Bewertungen</value>
+  </data>
+  <data name="NoRatings" xml:space="preserve">
+    <value>Keine Bewertungen</value>
+  </data>
+  <data name="NewMeal" xml:space="preserve">
+    <value>☆ Neu</value>
+  </data>
+  <data name="StarRating" xml:space="preserve">
+    <value>★ {0:F1}</value>
+  </data>
+
+  <!-- Über-Dialog -->
+  <data name="AboutTitle" xml:space="preserve">
+    <value>Über WinMensa</value>
+  </data>
+  <data name="AboutApiText" xml:space="preserve">
+    <value
+        >Menüdaten werden vom Studierendenwerk Karlsruhe bereitgestellt und über die MensaApp-API abgerufen:</value>
+  </data>
+  <data name="AboutDisclaimer" xml:space="preserve">
+    <value
+        >Dieses Projekt ist weder mit dem Studierendenwerk Karlsruhe verbunden noch wird es davon unterstützt.</value>
+  </data>
+  <data name="AboutClose" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+
+  <!-- Fehlerdialog -->
+  <data name="ErrorCanteensTitle" xml:space="preserve">
+    <value>Kantinen konnten nicht geladen werden</value>
+  </data>
+  <data name="ErrorCanteensBody" xml:space="preserve">
+    <value
+        >Die Kantinendaten konnten nicht geladen werden. Bitte überprüfe deine Internetverbindung und versuche es erneut.</value>
+  </data>
+  <data name="ErrorCanteensHint" xml:space="preserve">
+    <value
+        >Hinweis: Wenn du mit eduroam verbunden bist, empfiehlt es sich, auf KA-WLAN oder ein VPN zu wechseln. Eduroam blockiert App-Anfragen manchmal aufgrund von Proxy-Anforderungen.</value>
+  </data>
+  <data name="DialogOK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+</root>

@@ -1,4 +1,7 @@
-# WinMensa
+<center>
+    <img src="./Icon.svg" height="32" width="32" /><br/>
+    <h1>WinMensa</h1>
+</center>
 
 Native Windows (WinUI 3) client for the [Mensa-KA](https://github.com/kronos-et-al/MensaApp) app.
 

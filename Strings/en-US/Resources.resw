@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+
+  <!-- Main page -->
+  <data name="CanteenSelector.PlaceholderText" xml:space="preserve">
+    <value>Select canteen…</value>
+  </data>
+  <data name="MealDetailsPlaceholderText.Text" xml:space="preserve">
+    <value>Select a line to see its meals</value>
+  </data>
+  <data name="AboutButton.Content" xml:space="preserve">
+    <value>About</value>
+  </data>
+
+  <!-- Meal type badges -->
+  <data name="MealTypeVeganText.Text" xml:space="preserve">
+    <value>🌿 Vegan</value>
+  </data>
+  <data name="MealTypeVegetarianText.Text" xml:space="preserve">
+    <value>🌿 Vegetarian</value>
+  </data>
+  <data name="MealTypePorkText.Text" xml:space="preserve">
+    <value>🐖 Pork</value>
+  </data>
+  <data name="MealTypePoultryText.Text" xml:space="preserve">
+    <value>🐓 Poultry</value>
+  </data>
+  <data name="MealTypeBeefText.Text" xml:space="preserve">
+    <value>🐄 Beef</value>
+  </data>
+
+  <!-- Ratings (format strings: {0} = average, {1} = count) -->
+  <data name="RatingCaption" xml:space="preserve">
+    <value>{0:F1} – {1} ratings</value>
+  </data>
+  <data name="NoRatings" xml:space="preserve">
+    <value>No ratings</value>
+  </data>
+  <data name="NewMeal" xml:space="preserve">
+    <value>☆ New</value>
+  </data>
+  <data name="StarRating" xml:space="preserve">
+    <value>★ {0:F1}</value>
+  </data>
+
+  <!-- About dialog -->
+  <data name="AboutTitle" xml:space="preserve">
+    <value>About WinMensa</value>
+  </data>
+  <data name="AboutApiText" xml:space="preserve">
+    <value
+        >Menu data is provided by Studierendenwerk Karlsruhe via the MensaApp API:</value>
+  </data>
+  <data name="AboutDisclaimer" xml:space="preserve">
+    <value
+        >This project is neither affiliated with nor endorsed by the Studierendenwerk Karlsruhe.</value>
+  </data>
+  <data name="AboutClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+
+  <!-- Error dialog -->
+  <data name="ErrorCanteensTitle" xml:space="preserve">
+    <value>Failed to load canteens</value>
+  </data>
+  <data name="ErrorCanteensBody" xml:space="preserve">
+    <value
+        >Could not load canteen data. Please check your internet connection and try again.</value>
+  </data>
+  <data name="ErrorCanteensHint" xml:space="preserve">
+    <value
+        >Hint: If you are connected to eduroam, try switching to KA-WLAN or a VPN. Eduroam sometimes blocks requests from apps due to proxy requirements.</value>
+  </data>
+  <data name="DialogOK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+</root>

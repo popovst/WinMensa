@@ -9,11 +9,11 @@ namespace WinMensa.Views
         private bool HasRatings => Meal.Ratings is { } r && r.RatingsCount > 0;
 
         public string FormattedRatingCaption => Meal.Ratings is { } r
-            ? (HasRatings ? $"{r.AverageRating:F1} - von {r.RatingsCount} Bewertungen" : "Keine Bewertungen")
+            ? (HasRatings ? Strings.Format("RatingCaption", r.AverageRating, r.RatingsCount) : Strings.Get("NoRatings"))
             : string.Empty;
 
         public string HeaderFormattedRating => Meal.Ratings is { } r
-            ? (HasRatings ? $"★ {r.AverageRating:F1}" : "☆ Neu")
+            ? (HasRatings ? Strings.Format("StarRating", r.AverageRating) : Strings.Get("NewMeal"))
             : string.Empty;
 
         public int AverageRating => Meal.Ratings is { } r
@@ -168,6 +168,27 @@ namespace WinMensa.Views
             catch (Exception ex)
             {
                 Debug.WriteLine($"Error loading canteens: {ex}");
+
+                var content = new StackPanel { Spacing = 12, MaxWidth = 380 };
+                content.Children.Add(new TextBlock
+                {
+                    Text = Strings.Get("ErrorCanteensBody"),
+                    TextWrapping = TextWrapping.Wrap,
+                });
+                content.Children.Add(new TextBlock
+                {
+                    Text = Strings.Get("ErrorCanteensHint"),
+                    TextWrapping = TextWrapping.Wrap,
+                    Opacity = 0.7,
+                });
+
+                await new ContentDialog
+                {
+                    Title = Strings.Get("ErrorCanteensTitle"),
+                    Content = content,
+                    CloseButtonText = Strings.Get("DialogOK"),
+                    XamlRoot = XamlRoot,
+                }.ShowAsync();
             }
         }
 
@@ -193,7 +214,7 @@ namespace WinMensa.Views
             var content = new StackPanel { Spacing = 12, MaxWidth = 380 };
             content.Children.Add(new TextBlock
             {
-                Text = "Menu data is provided by Studierendenwerk Karlsruhe via the MensaApp API:",
+                Text = Strings.Get("AboutApiText"),
                 TextWrapping = TextWrapping.Wrap,
             });
             content.Children.Add(new HyperlinkButton
@@ -204,16 +225,16 @@ namespace WinMensa.Views
             });
             content.Children.Add(new TextBlock
             {
-                Text = "This project is neither affiliated with nor endorsed by the Studierendenwerk Karlsruhe.",
+                Text = Strings.Get("AboutDisclaimer"),
                 TextWrapping = TextWrapping.Wrap,
                 Opacity = 0.7,
             });
 
             await new ContentDialog
             {
-                Title = "About WinMensa",
+                Title = Strings.Get("AboutTitle"),
                 Content = content,
-                CloseButtonText = "Close",
+                CloseButtonText = Strings.Get("AboutClose"),
                 XamlRoot = XamlRoot,
             }.ShowAsync();
         }
