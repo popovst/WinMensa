@@ -23,18 +23,33 @@ namespace WinMensa
             window.AppWindow.TitleBar.PreferredHeightOption = TitleBarHeightOption.Standard;
             window.AppWindow.Title = "WinMensa";
 
+            var iconPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Icon.ico");
+            if (File.Exists(iconPath))
+                window.AppWindow.SetIcon(iconPath);
+
             if (MicaController.IsSupported())
                 window.SystemBackdrop = new MicaBackdrop();
 
             if (window.AppWindow.Presenter is OverlappedPresenter presenter)
                 presenter.Maximize();
 
-            var titleBar = new Grid();
+            var titleBar = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                Spacing = 8,
+                Margin = new Thickness(8, 0, 0, 0),
+                VerticalAlignment = VerticalAlignment.Center,
+            };
+            var iconFile = Path.Combine(AppContext.BaseDirectory, "Assets", "Square44x44Logo.targetsize-24_altform-unplated.png");
+            titleBar.Children.Add(new Image
+            {
+                Source = new BitmapImage(new Uri(iconFile)),
+                Width = 16,
+                Height = 16,
+            });
             titleBar.Children.Add(new TextBlock
             {
                 Text = "WinMensa",
-                VerticalAlignment = VerticalAlignment.Center,
-                Margin = new Thickness(16, 0, 0, 0),
                 FontSize = 12,
             });
 
